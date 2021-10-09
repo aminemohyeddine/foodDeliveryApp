@@ -1,14 +1,25 @@
 import React from 'react';
-import type {Node} from 'react';
 import {Text, View} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {navigationContainer} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
+import {Home, OrderDelivery, Restaurant} from './screens';
+import Tabs from './navigation/tabs';
 
-const App: () => Node = () => {
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View>
-      <Text>app haha</Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+        initialRouteName={'Home'}>
+        <Stack.Screen name="OrderDelivery" component={OrderDelivery} />
+        <Stack.Screen name="Home" component={Tabs} />
+        <Stack.Screen name="Restaurant" component={Restaurant} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
